@@ -1,5 +1,5 @@
 @foreach($employees as $employee)
-                <table border="1">
+                <table border="1" width="40%" table-layout:fixed>
                     <tr>
 
                         <td>name</td>
@@ -13,7 +13,7 @@
                         <td>{{ $employee->name }}</td>
                         <td>{{ $employee->email }}</td>
                         <td>{{ $employee->address }}</td>
-                        <td><a href="{{route('getemployee' , ['employee'=>$employee->id])}}">修改</a>
+                        <td><a href="{{route('getemployee' , ['employeeid'=>$employee->id])}}">修改</a>
 </td>
                     </tr>
                 </table>

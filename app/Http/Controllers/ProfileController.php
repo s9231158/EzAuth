@@ -21,6 +21,26 @@ class ProfileController extends Controller
         return view('dashboard');
     }
 
+    public function getemployee(User $employeeid){
+        return view('getemployee', compact('employeeid'));
+    }
+
+    public function employeeupdate(Request $employee,$employeeid){
+        $validatedData = $employee->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+        $newemployee = User::find($employeeid);
+
+        $newemployee->update([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'address' => $validatedData['address'],
+        ]);
+        return back()->with('sussess','成功修改');
+    }
+
     public function employees()
     {
         $employees = User::all();

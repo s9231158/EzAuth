@@ -22,6 +22,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'employee_access'])->group(function () {
     Route::get('/employees',[ProfileController::class,'employees'])->name('employees');
+    Route::get('/employees/{employeeid}',[ProfileController::class,'getemployee'])->name('getemployee');
+    Route::put('/employeeupdate/{employeeid}',[ProfileController::class,'employeeupdate'])->name('employeeupdate');
 });
 
 Route::middleware(['auth', 'verified'])->group(function(){
