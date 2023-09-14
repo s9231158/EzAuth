@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\EmployeeAccessMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::middleware(['auth', 'employee_access'])->group(function () {
+    Route::get('/employees',[ProfileController::class,'employees'])->name('employees');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
