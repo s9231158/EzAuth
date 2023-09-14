@@ -12,10 +12,20 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-public function employees(){
-$employees = User::all();
-return view('employees',compact('employees'));
-}
+
+    public function dashboard()
+    {
+        if (Auth()->user()->title === 'boss') {
+            session(['isboss' => true]);
+        }
+        return view('dashboard');
+    }
+
+    public function employees()
+    {
+        $employees = User::all();
+        return view('employees', compact('employees'));
+    }
     public function edit(Request $request): View
     {
         return view('profile.edit', [

@@ -24,10 +24,10 @@ Route::middleware(['auth', 'employee_access'])->group(function () {
     Route::get('/employees',[ProfileController::class,'employees'])->name('employees');
 });
 
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

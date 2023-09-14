@@ -12,8 +12,8 @@
                         
                         <td>{{ $employee->name }}</td>
                         <td>{{ $employee->email }}</td>
-                        <td>地址</td>
-                        <td><a href="">修改</a>
+                        <td>{{ $employee->address }}</td>
+                        <td><a href="{{route('getemployee' , ['employee'=>$employee->id])}}">修改</a>
 </td>
                     </tr>
                 </table>
